@@ -13,7 +13,8 @@ class Task (models.Model):
         ('Can do', 'Can do')
     ]
     due_date = models.DateField(blank=False)
-    date_created = models.DateField(auto_now_add=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
     state = models.CharField(
         max_length=10, choices=STATE_CHOICES, default='Current'
     )
