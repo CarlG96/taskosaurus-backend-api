@@ -1,5 +1,5 @@
 from django.http import Http404
-from rest_framework import status
+from rest_framework import status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Task
@@ -8,11 +8,25 @@ from taskosaurus_api.permissions import IsOwnerOrReadOnly
 
 
 class TaskList(APIView):
+    serializer_class = TaskSerializer
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly
+    ]
+
     def get(self, request):
         current_user = self.request.user
-        tasks = Task.objects.filter(owner=current_user)
+        tasks = Task.objects.all()
         serializer = TaskSerializer(tasks, many=True, context={'request': request})
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = TaskSerializer(
+            data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save(owner=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class TaskDetailView(APIView):
@@ -39,3 +53,4 @@ class TaskDetailView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
