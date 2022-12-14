@@ -9,8 +9,8 @@ class Note(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
 
-    class Meta(self):
+    class Meta:
         ordering = ['-date_created']
 
     def __str__(self):
-        return f'{title}'
+        return f'{self.title}'

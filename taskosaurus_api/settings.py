@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'rest_framework',
     'profiles',
-    'tasks'
+    'tasks',
+    'notes',
 ]
 
 MIDDLEWARE = [
