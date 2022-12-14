@@ -1,5 +1,5 @@
 from django.db import models
-from profiles.models import Profile
+from django.contrib.auth.models import User
 
 
 class Task (models.Model):
@@ -27,7 +27,7 @@ class Task (models.Model):
     priority = models.CharField(
         max_length=3, choices=PRIORITY_CHOICES, default=MUST_DO
     )
-    account = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['state', '-date_created']
