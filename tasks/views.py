@@ -22,8 +22,8 @@ class TaskDetailView(APIView):
     def get_object(self, pk):
         try:
             task = Task.objects.get(pk=pk)
-            self.check_object_permissions(self.request, profile)
-            return profile
+            self.check_object_permissions(self.request, task)
+            return task
         except Task.DoesNotExist:
             raise Http404
     
