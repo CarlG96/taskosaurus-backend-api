@@ -6,16 +6,16 @@ class Task (models.Model):
     CURRENT = 'CU'
     ARCHIVED = 'AC'
     STATE_CHOICES = [
-        (CURRENT, 'current'),
-        (ARCHIVED, 'archived')
+        (CURRENT, 'Current'),
+        (ARCHIVED, 'Archived')
     ]
     MUST_DO = 'MUD'
     MIGHT_DO = 'MID'
     CAN_DO = 'CAD'
     PRIORITY_CHOICES = [
-        (MUST_DO, 'must do'),
-        (MIGHT_DO, 'might do'),
-        (CAN_DO, 'can do')
+        (MUST_DO, 'Must do'),
+        (MIGHT_DO, 'Might do'),
+        (CAN_DO, 'Can do')
     ]
     due_date = models.DateField(blank=False)
     date_created = models.DateField(auto_now_add=True)
