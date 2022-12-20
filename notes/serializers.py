@@ -4,6 +4,7 @@ from .models import Note
 
 class NoteSerializer(serializers.ModelSerializer):
 
+    id = serializers.ReadOnlyField()
     owner = serializers.ReadOnlyField(source='task.owner.username')
     is_owner = serializers.SerializerMethodField()
 
@@ -15,5 +16,5 @@ class NoteSerializer(serializers.ModelSerializer):
         model = Note
         fields = [
             'title', 'description', 'date_created', 'date_updated', 'task',
-            'owner', 'is_owner'
+            'owner', 'is_owner', 'id'
         ]

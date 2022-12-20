@@ -34,8 +34,8 @@ class NoteDetailView(APIView):
         try:
             note = Note.objects.get(pk=pk)
             task = note.task
-            if self.request.user == task:
-                return note
+            self.check_object_permissions(self.request, note)
+            return note
         except Note.DoesNotExist:
             raise Http404
     
@@ -51,3 +51,10 @@ class NoteDetailView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self, request, pk):
+        note = self.get_object(pk)
+        note.delete()
+        return Response(
+            status=status.HTTP_204_NO_CONTENT
+        )
