@@ -23,7 +23,7 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=10, choices=PRIORITY_CHOICES, default='Must do'
     )
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
 
     class Meta:
         ordering = ['state', '-date_created']

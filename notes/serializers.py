@@ -3,12 +3,13 @@ from .models import Note
 
 
 class NoteSerializer(serializers.ModelSerializer):
+
     owner = serializers.ReadOnlyField(source='task.owner.username')
     is_owner = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         request = self.context['request']
-        return request.user == obj.owner
+        return request.user == obj.task.owner.username
 
     class Meta:
         model = Note
