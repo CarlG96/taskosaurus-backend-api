@@ -13,7 +13,9 @@ class NoteList(generics.ListCreateAPIView):
         permissions.IsAuthenticatedOrReadOnly
     ]
     queryset = Note.objects.all()
-
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['task__owner__username', 'title']
+    
     def perform_create(self, serializer):
         serializer.save()
 
