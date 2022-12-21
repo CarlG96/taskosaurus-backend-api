@@ -1,5 +1,5 @@
 from django.http import Http404
-from rest_framework import status, permissions
+from rest_framework import status, permissions, filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Note
@@ -12,6 +12,9 @@ class NoteList(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
+    filter_backends = [filters.SearchFilter]
+    filter_fields = ['owner', 'title', 'task']
+    search_fields = ['owner', 'title', 'task']
 
     def get(self, request):
         notes = Note.objects.all()
