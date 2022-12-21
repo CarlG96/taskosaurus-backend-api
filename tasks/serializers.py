@@ -3,6 +3,7 @@ from .models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
 
@@ -14,6 +15,6 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             'due_date', 'date_created', 'state', 'title', 'description',
-            'priority', 'owner', 'is_owner', 'date_updated'
+            'priority', 'owner', 'is_owner', 'date_updated', 'id'
         ]
 
