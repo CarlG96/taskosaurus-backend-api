@@ -11,7 +11,7 @@ class Note(models.Model):
     """
     Class for the Note Model.
     Attributes:
-    id (int): Auto-generated attribute which represents unique id.
+    id (int): Auto-generated attribute which represents unique id (hidden).
     title (str): Represents the title of the Note.
     date_created (DateTime): Date and time of creation of the Note.
     date_updated (DateTime): Date and time Note was last updated.

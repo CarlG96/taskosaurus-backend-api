@@ -8,6 +8,17 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
+    """
+    Class for the Profile Model.
+    Attributes:
+    id (int): Auto-generated attribute which represents unique id (hidden).
+    owner (OneToOne): Represents a one-to-one relationship with
+    a specific User instance.
+    date_created (DateTime): Date and time of creation of the Profile.
+    date_updated (DateTime): Date and time Profile was last updated.
+    image (file): Image that is displayed in the user's profile.
+    Represents the user.
+    """
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
@@ -24,6 +35,9 @@ class Profile(models.Model):
 
 
 def create_profile(sender, instance, created, **kwargs):
+    """
+    Function which creates the Profile.
+    """
     if created:
         Profile.objects.create(owner=instance)
 

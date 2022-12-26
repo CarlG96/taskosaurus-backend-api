@@ -1,5 +1,5 @@
 """
-File for rendering views in the
+File for rendering Note views in the
 Taskosaurus API.
 """
 from django.http import Http404

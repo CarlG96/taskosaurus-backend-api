@@ -1,3 +1,7 @@
+"""
+Code for the Task class which acts as a model for
+the API backend of Taskosaurus.
+"""
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -5,6 +9,23 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Task(models.Model):
+    """
+    Class for the Task Model.
+    Attributes:
+    id (int): Auto-generated attribute which represents unique id (hidden).
+    due_date (DateTime): Date and time when task must be completed by.
+    Must be at least one day from the time of creation.
+    date_created (DateTime): Date and time of creation of the Task.
+    date_updated (DateTime): Date and time Task was last updated.
+    state (enum): Represents whether the Task is current or has
+    been completed and is therefore archived.
+    title (str): Represents the title of the Task.
+    description (str): Represents the description of the Task.
+    priority (enum): Represents how urgent this task is specifically.
+    Can be 'Must Do', 'Might Do' and 'Can Do'.
+    owner (ForeignKey): Primary key of User that this Task is
+    linked with.
+    """
     STATE_CHOICES = [
         ('Current', 'Current'),
         ('Archived', 'Archived')
