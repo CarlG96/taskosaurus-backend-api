@@ -1,3 +1,7 @@
+"""
+Code for the Profile class which acts as a model for
+the API backend of Taskosaurus.
+"""
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
