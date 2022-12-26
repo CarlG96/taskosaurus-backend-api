@@ -17,14 +17,23 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Task',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(
+                    auto_created=True, primary_key=True, serialize=False,
+                    verbose_name='ID')),
                 ('due_date', models.DateField()),
                 ('date_created', models.DateField(auto_now_add=True)),
-                ('state', models.CharField(choices=[('CU', 'Current'), ('AC', 'Archived')], default='CU', max_length=2)),
+                ('state', models.CharField(
+                    choices=[('CU', 'Current'), ('AC', 'Archived')],
+                    default='CU', max_length=2)),
                 ('title', models.CharField(max_length=100)),
                 ('description', models.TextField(blank=True, max_length=500)),
-                ('priority', models.CharField(choices=[('MUD', 'Must do'), ('MID', 'Might do'), ('CAD', 'Can do')], default='MUD', max_length=3)),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('priority', models.CharField(
+                    choices=[('MUD', 'Must do'), ('MID', 'Might do'),
+                             ('CAD', 'Can do')],
+                    default='MUD', max_length=3)),
+                ('owner', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'ordering': ['state', '-date_created'],

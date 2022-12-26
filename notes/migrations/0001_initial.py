@@ -16,12 +16,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Note',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.BigAutoField(auto_created=True, primary_key=True,
+                 serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=50)),
                 ('description', models.TextField(max_length=1500)),
                 ('date_created', models.DateTimeField(auto_now_add=True)),
                 ('date_updated', models.DateTimeField(auto_now=True)),
-                ('task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tasks.task')),
+                ('task', models.ForeignKey(
+                 on_delete=django.db.models.deletion.CASCADE,
+                 to='tasks.task')),
             ],
             options={
                 'ordering': ['-date_created'],

@@ -17,7 +17,7 @@ class NoteList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_fields = ['task', 'task__owner__profile']
     search_fields = ['task__owner__username', 'title']
-    
+
     def perform_create(self, serializer):
         serializer.save()
 

@@ -16,6 +16,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='due_date',
-            field=models.DateTimeField(validators=[django.core.validators.MinValueValidator(datetime.datetime(2022, 12, 22, 12, 33, 56, 862726, tzinfo=utc)), django.core.validators.MaxValueValidator(datetime.datetime(2025, 9, 16, 12, 33, 56, 862748, tzinfo=utc))]),
+            field=models.DateTimeField(validators=[
+                django.core.validators.MinValueValidator(datetime.datetime(
+                    2022, 12, 22, 12, 33, 56, 862726, tzinfo=utc)),
+                django.core.validators.MaxValueValidator(datetime.datetime(
+                    2025, 9, 16, 12, 33, 56, 862748, tzinfo=utc))]),
         ),
     ]

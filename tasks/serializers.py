@@ -17,4 +17,3 @@ class TaskSerializer(serializers.ModelSerializer):
             'due_date', 'date_created', 'state', 'title', 'description',
             'priority', 'owner', 'is_owner', 'date_updated', 'id'
         ]
-

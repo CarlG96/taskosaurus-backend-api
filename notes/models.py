@@ -8,7 +8,8 @@ class Note(models.Model):
     description = models.TextField(blank=False, max_length=1500)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='notes')
+    task = models.ForeignKey(
+        Task, on_delete=models.CASCADE, related_name='notes')
 
     class Meta:
         ordering = ['-date_created']

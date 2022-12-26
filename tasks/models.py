@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.core.validators import MaxValueValidator, MinValueValidator 
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Task(models.Model):
@@ -14,7 +14,13 @@ class Task(models.Model):
         ('Might do', 'Might do'),
         ('Can do', 'Can do')
     ]
-    due_date = models.DateTimeField(blank=False, validators=[MinValueValidator(timezone.now() + timezone.timedelta(days=1)), MaxValueValidator(timezone.now() + timezone.timedelta(days=1000))])
+    due_date = models.DateTimeField(blank=False,
+                                    validators=[MinValueValidator(
+                                        timezone.now() + timezone.timedelta(
+                                            days=1)),
+                                                MaxValueValidator(
+                                        timezone.now() + timezone.timedelta(
+                                            days=1000))])
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     state = models.CharField(
@@ -25,7 +31,8 @@ class Task(models.Model):
     priority = models.CharField(
         max_length=10, choices=PRIORITY_CHOICES, default='Must do'
     )
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tasks')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE,
+                              related_name='tasks')
 
     class Meta:
         ordering = ['state', '-date_created']

@@ -13,11 +13,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='task',
             name='priority',
-            field=models.CharField(choices=[('Must do', 'Must do'), ('Might do', 'Might do'), ('Can do', 'Can do')], default='Must do', max_length=10),
+            field=models.CharField(
+                choices=[('Must do', 'Must do'), ('Might do', 'Might do'),
+                         ('Can do', 'Can do')],
+                default='Must do', max_length=10),
         ),
         migrations.AlterField(
             model_name='task',
             name='state',
-            field=models.CharField(choices=[('Current', 'Current'), ('Archived', 'Archived')], default='Current', max_length=10),
+            field=models.CharField(
+                choices=[('Current', 'Current'), ('Archived', 'Archived')],
+                default='Current', max_length=10),
         ),
     ]
