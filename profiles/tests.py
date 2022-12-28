@@ -31,7 +31,7 @@ class TestRootRouteView(APITestCase):
         Root Route view. Should return a HTTP 200 response.
         """
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_logged_in_root_route(self):
         """
@@ -41,7 +41,7 @@ class TestRootRouteView(APITestCase):
         self.client.login(username='BobTheBuilder',
                           password='HelloWorld1234')
         response = self.client.get('/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
 
 class TestProfileListView(APITestCase):
@@ -68,7 +68,7 @@ class TestProfileListView(APITestCase):
         Profiles List view. Should return a HTTP 200 response.
         """
         response = self.client.get('/profiles/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_logged_in_profile_list_view(self):
         """
@@ -78,7 +78,7 @@ class TestProfileListView(APITestCase):
         self.client.login(username='BobTheBuilder',
                           password='HelloWorld1234')
         response = self.client.get('/profiles/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
 
    
 class TestProfileDetailView(APITestCase):
@@ -99,7 +99,37 @@ class TestProfileDetailView(APITestCase):
         )
     
     def test_non_logged_in_profile_detail_view(self):
-        
+        """
+        Test whether a non-logged in user can view a Profile 
+        Detail View. Should return a HTTP 200 response.
+        """
+        response = self.client.get('/profiles/1')
+        self.assertTrue(response.status_code, status.HTTP_200_OK)
+
+    def test_logged_in_profile_detail_view(self):
+        self.client.login(username='BobTheBuilder',
+                          password='HelloWorld1234')
+        response = self.client.get(f'/profiles/{self.user.id}')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_owner_can_edit_profile(self):
+        """
+        Test whether a logged in user can edit their profile.
+        Tests by attempt to edit name. Should return a
+        HTTP 200 response.
+        """
+        self.client.login(username='BobTheBuilder',
+                          password='HelloWorld1234')
+        view = self.client.get(f'/profiles/{self.user.id}')
+        self.assertEqual(view.status_code, status.HTTP_200_OK)
+        self.assertEqual(view.data['name'], '')
+        response = self.client.put(
+            f'/profiles/{self.user.id}',
+            {'name': 'Changename'}
+        )
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["name"], "Changename")
+
 
     
 
