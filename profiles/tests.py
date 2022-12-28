@@ -11,7 +11,7 @@ from profiles import models
 class TestRootRouteView(APITestCase):
     """
     Class to perform automated tests on the Root Route
-    View
+    View.
     """
     def setUp(self):
         """
@@ -80,7 +80,7 @@ class TestProfileListView(APITestCase):
         response = self.client.get('/profiles/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-   
+
 class TestProfileDetailView(APITestCase):
     """
     Class to perform automated testing on the
@@ -97,10 +97,16 @@ class TestProfileDetailView(APITestCase):
             username=username,
             password=password
         )
-    
+        second_username = 'PatThePostMan'
+        second_password = 'GoodbyeMoon1234'
+        self.second_user = get_user_model().objects.create_user(
+            username=second_username,
+            password=second_password
+        )
+
     def test_non_logged_in_profile_detail_view(self):
         """
-        Test whether a non-logged in user can view a Profile 
+        Test whether a non-logged in user can view a Profile
         Detail View. Should return a HTTP 200 response.
         """
         response = self.client.get('/profiles/1')
@@ -130,9 +136,28 @@ class TestProfileDetailView(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["name"], "Changename")
 
+    def test_non_logged_in_user_cant_edit_profile(self):
+        """
+        Tests whether a non-logged in user can edit a user's Profile.
+        Tests by attempt to edit name field. Should return a HTTP 400 Bad
+        Request response.
+        """
+        response = self.client.put(
+            f'/profiles/{self.user.id}',
+            {'name': 'Changename'}
+        )
+        self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    
-
-        
-
-
+    def test_other_user_cant_edit_profile(self):
+        """
+        Tests whether a user that is logged in can edit another user's Profile.
+        Test by attempt to edit name field. Should return a HTTP 400 Bad
+        Request response.
+        """
+        self.client.login(username='PatThePostMan',
+                          password='GoodbyeMoon1234')
+        response = self.client.put(
+            f'/profiles/{self.user.id}',
+            {'name': 'Changename'}
+        )
+        self.assertTrue(response.status_code, status.HTTP_400_BAD_REQUEST)

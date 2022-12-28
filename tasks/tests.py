@@ -8,3 +8,10 @@ from profiles import models
 from tasks import models
 
 
+class TestTaskListView(APITestCase):
+    """
+    Class to perform automated tests on the 
+    Task List View.
+    """
+
+
