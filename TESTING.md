@@ -60,4 +60,64 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
 
     <img src="media/TESTING_images/logged-in-profile-detail-change.png">
 
-## 
+## Task List View
+
+* This route exists to provide a list view of all the Task models and to allow the user to create new tasks via post request if they are logged in.
+    * Test: A non-logged in user can view the Task list but has no option to post a new Task.
+    * Result: A non-logged in user can view the Task list but cannot add to it.
+
+    <img src="media/TESTING_images/non-logged-in-task-list.png">
+
+    * Test: A logged in user can view the Task list and has an option to post a new Task.
+    * Result: A logged in user can view the Task list and is presented with a form to post a new Task.
+
+    <img src="media/TESTING_images/logged-in-task-list.png">
+
+    * Test: A logged in user can post a new Task when all the relevant fields are filled in correctly. They are then redirected to the relevant Task detail view.
+    * Result: A logged in user can do this.
+    * Test: A new Task instance must have its 'due_date' field set at least 24 hours in the future to be considered valid. Otherwise it will cause a validation error.
+    * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
+
+    <img src="media/TESTING_images/task-due-date-validation.png">
+
+    * Test: A new Task instance must have a value for the 'title' field to be considered valid.
+    * Result: This will return a HTTP 400 Bad Request response if there is no value for the title.
+
+    <img src="media/TESTING_images/task-title-validation.png">
+
+## Task Detail View
+
+* This route exists to provide a detail view of a single Task model. An owner of the Task should be able to delete the Task via a delete request and update the Task via a put request.
+    * Test: A non-logged in user will be able to view the Task instance but cannot change or delete the Task instance.
+    * Result: A non-logged in user is able to view the Task instance but cannot change or delete the instance.
+
+    <img src="media/TESTING_images/non-logged-in-task-detail.png">
+
+    * Test: A logged in user cannot change or delete a Task instance that they are not the owner of.
+    * Result: A logged in user cannot change or delete Tasks which aren't theirs.
+    * Test: A logged in user can change the 'due_date' field of a Task instance that they own.
+    * Result: A logged in user can change this.
+
+    <img src="media/TESTING_images/task-detail-date-change-check.png">
+
+    * Test: A logged in user can change the 'state' field of a Task instance that they own.
+    * Result: This is possible.
+    * Test: A logged in user can change the 'title' field of a Task instance that they own.
+    * Result: This is possible.
+    * Test: A logged in user can change the 'description' field of a Task instance that they own.
+    * Result: This is possible. The description field can even be left blank after having had a value in it.
+    * Test: A logged in user can change the 'priority' field of a Task instance that they own.
+    * Result: This is possible.
+    * Test: A logged in user can't change the 'due_date' field to be less than at least a day away from the current datetime.
+    * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
+
+    <img src="media/TESTING_images/task-detail-due-date-validation.png">
+
+    * Test: A logged in user can't change the 'title' field to a blank value.
+    * Result: This will return a HTTP 400 Bad Request.
+
+    <img src="media/TESTING_images/task-detail-title-validation.png">
+
+## Note List View
+
+## Note Detail View
