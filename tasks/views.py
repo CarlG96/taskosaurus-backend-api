@@ -23,8 +23,18 @@ class TaskList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = Task.objects.all()
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
-    filterset_fields = ['owner__profile', 'state', 'priority']
-    search_fields = ['owner__username', 'title', 'state', 'priority']
+    filterset_fields = ['state', 'priority']
+    search_fields = ['title', 'state', 'priority']
+    
+    def get_queryset(self):
+        """
+        Makes it so only the Tasks that the user owns are available.
+
+        Parameters: None
+
+        Return: queryset
+        """
+        return self.queryset.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
         """
@@ -49,3 +59,13 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsOwnerOrReadOnly]
     queryset = Task.objects.all()
+
+    def get_queryset(self):
+        """
+        Makes it so only the Tasks that the user owns are available.
+
+        Parameters: None
+
+        Return: queryset
+        """
+        return self.queryset.filter(owner=self.request.user)
