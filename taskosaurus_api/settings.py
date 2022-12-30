@@ -89,7 +89,6 @@ INSTALLED_APPS = [
     'profiles',
     'tasks',
     'events',
-    'notes',
 ]
 SITE_ID = 1
 MIDDLEWARE = [

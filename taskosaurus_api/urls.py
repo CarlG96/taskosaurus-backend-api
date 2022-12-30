@@ -17,5 +17,4 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('', include('tasks.urls')),
     path('', include('events.urls')),
-    path('', include('notes.urls')),
 ]
