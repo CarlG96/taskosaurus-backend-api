@@ -3,6 +3,7 @@ File for rendering Task views in the
 Taskosaurus API.
 """
 from django.http import Http404
+from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, permissions, generics, filters
 from rest_framework.views import APIView
@@ -29,13 +30,18 @@ class TaskList(generics.ListCreateAPIView):
     def get_queryset(self):
         """
         Makes it so only the Tasks that the user owns are available.
+        Q object makes it so an anonymous user cannot retrieve any
+        information from the list view.
 
         Parameters: None
 
         Return: queryset
         """
-        return self.queryset.filter(owner=self.request.user)
-
+        if self.request.user.is_anonymous:
+            return self.queryset.filter(Q(pk=None))
+        else:
+            return self.queryset.filter(owner=self.request.user)
+        
     def perform_create(self, serializer):
         """
         Function which saves a new Task Model to the
@@ -63,9 +69,14 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         """
         Makes it so only the Tasks that the user owns are available.
+        Q object makes it so an anonymous user cannot retrieve any
+        information from the detail view.
 
         Parameters: None
 
         Return: queryset
         """
-        return self.queryset.filter(owner=self.request.user)
+        if self.request.user.is_anonymous:
+            return self.queryset.filter(Q(pk=None))
+        else:
+            return self.queryset.filter(owner=self.request.user)

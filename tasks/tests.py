@@ -124,20 +124,36 @@ class TestTaskDetailView(APITestCase):
     def test_logged_out_task_detail_view(self):
         """
         Tests whether a non-logged in user can access the
-        Task Detail view. Should return a HTTP 200 response.
+        Task Detail view. Should return a HTTP 404 response.
         """
         response = self.client.get('/tasks/1')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_logged_in_task_detail_view(self):
         """
         Tests whether a logged in user can access the
-        Task Detail view. Should return a HTTP 200 response.
+        Task Detail view of a Task they own. Should return a HTTP 200 response.
         """
         self.client.login(username='BobTheBuilder',
                           password='HelloWorld1234')
         response = self.client.get('/tasks/1')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_logged_in_other_user_detail_view(self):
+        """
+        Tests whether a logged in user can access the
+        Task Detail view of a Task they don't own. Should return a HTTP 404 response.
+        """
+        second_username = 'PatThePostMan'
+        second_password = 'GoodbyeMoon1234'
+        self.second_user = get_user_model().objects.create_user(
+            username=second_username,
+            password=second_password
+        )
+        self.client.login(username=second_username,
+                          password=second_password)
+        response = self.client.get('/tasks/1')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_owner_can_update_task(self):
         """
