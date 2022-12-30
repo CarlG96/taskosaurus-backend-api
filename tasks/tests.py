@@ -142,7 +142,8 @@ class TestTaskDetailView(APITestCase):
     def test_logged_in_other_user_detail_view(self):
         """
         Tests whether a logged in user can access the
-        Task Detail view of a Task they don't own. Should return a HTTP 404 response.
+        Task Detail view of a Task they don't own. Should return a HTTP 404 
+        response.
         """
         second_username = 'PatThePostMan'
         second_password = 'GoodbyeMoon1234'
