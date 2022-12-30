@@ -63,42 +63,42 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
 ## Task List View
 
 * This route exists to provide a list view of all the Task models and to allow the user to create new tasks via post request if they are logged in.
-    * Test: A non-logged in user can view the Task list but has no option to post a new Task.
-    * Result: A non-logged in user can view the Task list but cannot add to it.
+    * Test: A non-logged in user can view the Task list but has no option to post a new Task and cannot see any Tasks.
+    * Result: A non-logged in user can view the Task list but cannot add to it and cannot see any Tasks.
 
-    
+    <img src="media/TESTING-images/non-logged-in-task-list.png">
 
-    * Test: A logged in user can view the Task list and has an option to post a new Task.
-    * Result: A logged in user can view the Task list and is presented with a form to post a new Task.
+    * Test: A logged in user can view the Task list and has an option to post a new Task, they can only see their own Tasks.
+    * Result: A logged in user can view the Task list and is presented with a form to post a new Task, and can only see their own Tasks.
 
-    
+    <img src="media/TESTING-images/logged-in-task-list.png">
 
     * Test: A logged in user can post a new Task when all the relevant fields are filled in correctly. They are then redirected to the relevant Task detail view.
     * Result: A logged in user can do this.
     * Test: A new Task instance must have its 'due_date' field set at least 24 hours in the future to be considered valid. Otherwise it will cause a validation error.
     * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
 
-    
+    <img src="media/TESTING-images/task-list-due-date-validation.png">
 
     * Test: A new Task instance must have a value for the 'title' field to be considered valid.
     * Result: This will return a HTTP 400 Bad Request response if there is no value for the title.
 
-    
+    <img src="media/TESTING-images/task-list-title-validation.png">
 
 ## Task Detail View
 
 * This route exists to provide a detail view of a single Task model. An owner of the Task should be able to delete the Task via a delete request and update the Task via a put request.
-    * Test: A non-logged in user will be able to view the Task instance but cannot change or delete the Task instance.
-    * Result: A non-logged in user is able to view the Task instance but cannot change or delete the instance.
+    * Test: A non-logged in user won't be able to view the Task instance and cannot change or delete the Task instance.
+    * Result: A non-logged in user is unable to view the Task instance and cannot change or delete the instance (the put method in the picture does not work).
 
-    
+    <img src="media/TESTING-images/logged-out-task-detail.png">
 
     * Test: A logged in user cannot change or delete a Task instance that they are not the owner of.
     * Result: A logged in user cannot change or delete Tasks which aren't theirs.
     * Test: A logged in user can change the 'due_date' field of a Task instance that they own.
     * Result: A logged in user can change this.
 
-    
+    <img src="media/TESTING-images/logged-in-change-due-date.png">
 
     * Test: A logged in user can change the 'state' field of a Task instance that they own.
     * Result: This is possible.
@@ -111,10 +111,15 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
     * Test: A logged in user can't change the 'due_date' field to be less than at least a day away from the current datetime.
     * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
 
-    
+    <img src="media/TESTING-images/task-detail-due-date-check.png">
 
     * Test: A logged in user can't change the 'title' field to a blank value.
     * Result: This will return a HTTP 400 Bad Request.
+
+    <img src="media/TESTING-images/task-detail-title-check.png">
+
+    NOTE: The put method and delete methods seem to be there for the logged out users however they have no affect and I think
+    this is a Django bug.
 
     
 
