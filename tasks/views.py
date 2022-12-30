@@ -63,7 +63,8 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     and delete requests to be made if the user is authenticated.
     """
     serializer_class = TaskSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, 
+                          IsOwnerOrReadOnly]
     queryset = Task.objects.all()
 
     def get_queryset(self):
@@ -80,3 +81,5 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
             return self.queryset.filter(Q(pk=None))
         else:
             return self.queryset.filter(owner=self.request.user)
+
+

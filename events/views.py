@@ -63,7 +63,7 @@ class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     and delete requests to be made if the user is authenticated.
     """
     serializer_class = EventSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly, permissions.IsAuthenticatedOrReadOnly]
     queryset = Event.objects.all()
 
     def get_queryset(self):

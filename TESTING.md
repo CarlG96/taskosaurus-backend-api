@@ -62,7 +62,7 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
 
 ## Task List View
 
-* This route exists to provide a list view of all the Task models and to allow the user to create new tasks via post request if they are logged in.
+* This route exists to provide a list view of all the Task models that they own and to allow the user to create new tasks via post request if they are logged in.
     * Test: A non-logged in user can view the Task list but has no option to post a new Task and cannot see any Tasks.
     * Result: A non-logged in user can view the Task list but cannot add to it and cannot see any Tasks.
 
@@ -89,12 +89,12 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
 
 * This route exists to provide a detail view of a single Task model. An owner of the Task should be able to delete the Task via a delete request and update the Task via a put request.
     * Test: A non-logged in user won't be able to view the Task instance and cannot change or delete the Task instance.
-    * Result: A non-logged in user is unable to view the Task instance and cannot change or delete the instance (the put method in the picture does not work).
+    * Result: A non-logged in user is unable to view the Task instance and cannot change or delete the instance.
 
     <img src="media/TESTING-images/logged-out-task-detail.png">
 
     * Test: A logged in user cannot change or delete a Task instance that they are not the owner of.
-    * Result: A logged in user cannot change or delete Tasks which aren't theirs.
+    * Result: A logged in user cannot change or delete Tasks which aren't theirs (the put method and delete method in the picture does not work).
     * Test: A logged in user can change the 'due_date' field of a Task instance that they own.
     * Result: A logged in user can change this.
 
@@ -119,7 +119,37 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
     <img src="media/TESTING-images/task-detail-title-check.png">
 
     NOTE: The put method and delete methods seem to be there for the logged out users however they have no affect and I think
-    this is a Django bug.
+    this is a Django bug or it might be because there are no objects to compare ownership against.
 
-    
+## Event List View
+* This route exists to provide a list view of all the Event models that the user owns and to allow the user to create new tasks via post request if they are logged in.
+    * Test: A non-logged in user can view the Event list but has no option to post a new Event and cannot see any Event.
+    * Result: A non-logged in user can view the Event list but has no option to post a new Event and cannot see any Event.
+
+    <img src="media/TESTING-images/logged-out-event-list-view.png">
+
+    * Test: A logged in user can view the Event list and see their Events and has the option to post new Events.
+    * Result: A logged in user can do this.
+
+    <img src="media/TESTING-images/logged-in-event-list-view.png">
+
+    * Test: A logged in user can post a new Event when all the relevant fields are filled in correctly. They are then redirected to the relevant view.
+    * Result: This happens
+    * Test: A new Event instance must have its 'due_date' field set at least 24 hours in the future to be considered valid. Otherwise it will cause a validation error.
+    * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
+
+    <img src="media/TESTING-images/event-list-date-validation.png">
+
+    * Test: A new Event instance must have a value for the 'title' field to be considered valid.
+    * Result: This will return a HTTP 400 Bad Request response if there is no value for the title
+
+    <img src="media/TESTING-images/event-list-title-validation.png">
+
+
+## Event Detail View
+* This route exists to provide a detail view of a single Event model. An owner of the Event should be able to delete the Task via a delete request and update the Task via a put request.
+    * Test: A non-logged in user won't be able to view the Event instance and cannot change or delete the Task instance.
+    * Result: A non-logged in user is unable to view the Event instance and cannot change or delete the instance.
+
+    <img src="media/TESTING-images/non-logged-in-event-detail.png">
 
