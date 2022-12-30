@@ -66,24 +66,24 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
     * Test: A non-logged in user can view the Task list but has no option to post a new Task.
     * Result: A non-logged in user can view the Task list but cannot add to it.
 
-    <img src="media/TESTING-images/non-logged-in-task-list.png">
+    
 
     * Test: A logged in user can view the Task list and has an option to post a new Task.
     * Result: A logged in user can view the Task list and is presented with a form to post a new Task.
 
-    <img src="media/TESTING-images/logged-in-task-list.png">
+    
 
     * Test: A logged in user can post a new Task when all the relevant fields are filled in correctly. They are then redirected to the relevant Task detail view.
     * Result: A logged in user can do this.
     * Test: A new Task instance must have its 'due_date' field set at least 24 hours in the future to be considered valid. Otherwise it will cause a validation error.
     * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
 
-    <img src="media/TESTING-images/task-due-date-validation.png">
+    
 
     * Test: A new Task instance must have a value for the 'title' field to be considered valid.
     * Result: This will return a HTTP 400 Bad Request response if there is no value for the title.
 
-    <img src="media/TESTING-images/task-title-validation.png">
+    
 
 ## Task Detail View
 
@@ -91,14 +91,14 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
     * Test: A non-logged in user will be able to view the Task instance but cannot change or delete the Task instance.
     * Result: A non-logged in user is able to view the Task instance but cannot change or delete the instance.
 
-    <img src="media/TESTING-images/non-logged-in-task-detail.png">
+    
 
     * Test: A logged in user cannot change or delete a Task instance that they are not the owner of.
     * Result: A logged in user cannot change or delete Tasks which aren't theirs.
     * Test: A logged in user can change the 'due_date' field of a Task instance that they own.
     * Result: A logged in user can change this.
 
-    <img src="media/TESTING-images/task-detail-date-change-check.png">
+    
 
     * Test: A logged in user can change the 'state' field of a Task instance that they own.
     * Result: This is possible.
@@ -111,26 +111,10 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
     * Test: A logged in user can't change the 'due_date' field to be less than at least a day away from the current datetime.
     * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
 
-    <img src="media/TESTING-images/task-detail-due-date-validation.png">
+    
 
     * Test: A logged in user can't change the 'title' field to a blank value.
     * Result: This will return a HTTP 400 Bad Request.
 
-    <img src="media/TESTING-images/task-detail-title-validation.png">
+    
 
-## Note List View
-* This route exists to provides a list of all the Note Models and to allow a logged in user the ability to create a Note Model.
-
-    Test: A non-logged in user will be able to view the Note List but cannot post any new Notes.
-    Result: A non-logged in user can view the Note List but cannot post to the Note list.
-
-    <img src="media/TESTING-images/non-logged-in-note-list.png">
-
-    Test: A logged in user will be able to view the Note List and also has the option of posting new Notes.
-    Result: A logged in user can view the Note List and also has the option of posting new Notes.
-
-    <img src="media/TESTING-images/logged-in-note-list.png">
-
-    Test: A logged in user 
-
-## Note Detail View
