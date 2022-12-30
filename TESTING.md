@@ -118,6 +118,9 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
 
     <img src="media/TESTING-images/task-detail-title-check.png">
 
+    * Test: A logged in user can delete a Task instance that they own.
+    * Result: A logged in user can do this.
+
     NOTE: The put method and delete methods seem to be there for the logged out users however they have no affect and I think
     this is a Django bug or it might be because there are no objects to compare ownership against.
 
@@ -153,3 +156,28 @@ Here are a list of manual tests carried out to ensure that the Taskosaurus backe
 
     <img src="media/TESTING-images/non-logged-in-event-detail.png">
 
+    * Test: A logged in user cannot change or delete an Event instance that they are not the owner of.
+    * Result: A logged in user cannot change or delete Events which aren't theirs (the put method and delete method in the pictures do not work).
+    * Test: A logged in user can change the 'due_date' field of an Event instance that they own.
+    * Result: A logged in user can change this.
+    * Test: A logged in user can change the 'title' field of an Event instance that they own.
+    * Result: A logged in user can change this.
+    * Test: A logged in user can change the 'need_travel' field of an Event instance that they own.
+    * Result: A logged in user can do this.
+    * Test: A logged in user can change the 'money_required' field of an Event instance that they own.
+    * Result: A logged in user can do this.
+    * Test: A logged in user can't change the 'due_date' field to be less than at least a day away from the current datetime.
+    * Result: This will return a HTTP 400 Bad Request response if it is not set atleast 24 hours in the future.
+
+    <img src="media/TESTING-images/event-detail-date-check.png">
+
+    * Test: A logged in user can't change the 'title' field to a blank value.
+    * Result: This will return a HTTP 400 Bad Request.
+
+    <img src="media/TESTING-images/event-detail-title-check.png">
+
+    * Test: A logged in user can delete Events that they own.
+    * Result: A logged in user can do this.
+
+    NOTE: The put method and delete methods seem to be there for the logged out users however they have no affect and I think
+    this is a Django bug or it might be because there are no objects to compare ownership against.
