@@ -19,10 +19,10 @@ class Event(models.Model):
                                                      timezone.timedelta(
                                                                     days=1000)
                                                      )])
-    need_travel = models.BooleanField(default=False),
+    need_travel = models.BooleanField(default=False)
     money_required = models.IntegerField(blank=False, default=0,
                                          validators=[MinValueValidator(0)]
-                                         ),
+                                         )
     owner = models.ForeignKey(User, on_delete=models.CASCADE,
                               related_name='events')
     

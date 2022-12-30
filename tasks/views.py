@@ -17,7 +17,7 @@ class TaskList(generics.ListCreateAPIView):
     """
     Class that displays a list of all the Task
     Models created and currently stored in the
-    database. Also allows authenticated users
+    database owned by the user. Also allows authenticated users
     to post new Task Models.
     """
     serializer_class = TaskSerializer
@@ -59,7 +59,7 @@ class TaskList(generics.ListCreateAPIView):
 
 class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
-    Class that displays a specific Task Model. Allows get, put
+    Class that displays a specific Task Model to an owner. Allows get, put
     and delete requests to be made if the user is authenticated.
     """
     serializer_class = TaskSerializer

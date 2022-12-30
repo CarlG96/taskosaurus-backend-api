@@ -1,6 +1,6 @@
 """
 File for url routing for the whole Taskosaurus backend API.
-Includes paths for admin, Tasks, Notes, Profiles, authorisation
+Includes paths for admin, Tasks, Events, Profiles, authorisation
 and root routes.
 """
 from django.contrib import admin
@@ -16,5 +16,6 @@ urlpatterns = [
          include('dj_rest_auth.registration.urls')),
     path('', include('profiles.urls')),
     path('', include('tasks.urls')),
+    path('', include('events.urls')),
     path('', include('notes.urls')),
 ]
