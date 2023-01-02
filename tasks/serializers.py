@@ -1,6 +1,7 @@
 """
 Serializer file for the Task class.
 """
+from django.utils import timezone
 from rest_framework import serializers
 from .models import Task
 
@@ -15,6 +16,7 @@ class TaskSerializer(serializers.ModelSerializer):
     id = serializers.ReadOnlyField()
     owner = serializers.ReadOnlyField(source='owner.username')
     is_owner = serializers.SerializerMethodField()
+    is_overdue = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
         """
@@ -31,6 +33,21 @@ class TaskSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
 
+    def get_is_overdue(self, obj):
+        """
+        Function to return whether or not the task is overdue.
+
+        Parameter:
+        obj: Task object being checked.
+        Return:
+        bool
+        """
+        now = timezone.now()
+        if obj.due_date < now:
+            return True
+        else:
+            return False
+
     class Meta:
         """
         Class which displays which fields are to be included in the
@@ -39,5 +56,5 @@ class TaskSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             'due_date', 'date_created', 'state', 'title', 'description',
-            'priority', 'owner', 'is_owner', 'date_updated', 'id'
+            'priority', 'owner', 'is_owner', 'date_updated', 'id', 'is_overdue'
         ]
