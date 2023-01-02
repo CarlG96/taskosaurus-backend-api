@@ -131,3 +131,87 @@ class EventDetailView(APITestCase):
                                             need_travel=True,
                                             money_required=10,
                                             owner=self.user)
+    
+    def test_logged_out_event_detail_view(self):
+        """
+        Tests whether a non-logged in user can access the
+        Event Detail view. Should return a HTTP 404 response.
+        """
+        response = self.client.get('/events/1')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_logged_in_other_user_detail_view(self):
+        """
+        Tests whether a logged in user can access the Event Detail
+        view of an Event they don't own. Should return a HTTP 404
+        response.
+        """
+        second_username = 'PatThePostMan'
+        second_password = 'GoodbyeMoon1234'
+        self.second_user = get_user_model().objects.create_user(
+            username=second_username,
+            password=second_password
+        )
+        self.client.login(username=second_username,
+                          password=second_password)
+        response = self.client.get('/events/1')
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_owner_can_update_event(self):
+        """
+        Tests whether an owner can change an Event in
+        the Event Detail view. Should return a HTTP 200
+        response.
+        """
+        self.client.login(username='BobTheBuilder',
+                          password='HelloWorld1234')
+        response = self.client.put('/events/1',
+                                   {'title': 'change'})
+        self.assertTrue(response.status_code, status.HTTP_200_OK)
+    
+    def test_whether_non_owner_cant_update_task(self):
+        """
+        Tests whether a non-owner can change an Event in the
+        Event Detail view. Should return a HTTP 403 response.
+        """
+        second_username = 'PatThePostMan'
+        second_password = 'GoodbyeMoon1234'
+        self.second_user = get_user_model().objects.create_user(
+            username=second_username,
+            password=second_password
+        )
+        self.client.login(username=second_username,
+                          password=second_password)
+        response = self.client.put('/events/1',
+                                   {'title': 'change'})
+        self.assertTrue(response.status_code, status.HTTP_403_FORBIDDEN)
+
+    def test_put_must_have_valid_date_of_event(self):
+        """
+        Tests whether an owner's put request must have a valid
+        date of field. Should return a HTTP 400 response.
+        """
+        self.client.login(username='BobTheBuilder',
+                          password='HelloWorld1234')
+        data = {"title": "Hello World",
+                "date_of_event": "2021-08-15 15:20",
+                "owner": f"{self.user}",
+                "money_required": 10,
+                "need_travel": True}
+        response = self.client.put(f'/events/1', data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    
+    def test_put_must_have_valid_title(self):
+        """
+        Tests whether an owner's put request must ahave a valid title
+        field. Should return a HTTP 400 response.
+        """
+        self.client.login(username='BobTheBuilder',
+                          password='HelloWorld1234')
+        data = {"title": "",
+                "date_of_event": "2023-08-15 15:20",
+                "owner": f"{self.user}",
+                "money_required": 10,
+                "need_travel": True}
+        response = self.client.put(f'/events/1', data)
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
