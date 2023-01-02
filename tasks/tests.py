@@ -25,7 +25,7 @@ class TestTaskListView(APITestCase):
             password=password
         )
         task = models.Task.objects.create(title="Hello World",
-                                          due_date="2023-02-15 15:20",
+                                          due_date="2023-08-15 15:20",
                                           state="Archived",
                                           priority="Might Do",
                                           owner=self.user)
@@ -56,12 +56,12 @@ class TestTaskListView(APITestCase):
         self.client.login(username='BobTheBuilder',
                           password='HelloWorld1234')
         data = {"title": "Hello World",
-                "due_date": "2023-02-15 15:20",
+                "due_date": "2023-08-15 15:20",
                 "owner": f"{self.user}"}
-        response = self.client.post(f'/tasks/', data)
+        response = self.client.post('/tasks/', data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data["title"], "Hello World")
-        self.assertEqual(response.data["due_date"], "15:20 15 Feb 2023")
+        self.assertEqual(response.data["due_date"], "15:20 15 Aug 2023")
         self.assertEqual(response.data["owner"], f"{self.user}")
 
     def test_logged_out_user_cant_post_task(self):
@@ -106,7 +106,7 @@ class TestTaskListView(APITestCase):
 class TestTaskDetailView(APITestCase):
     """
     Class to perform automated tests on the
-    Task List View.
+    Task Detail View.
     """
     def setUp(self):
         username = 'BobTheBuilder'
