@@ -11,7 +11,7 @@ from events import models
 class TestEventListView(APITestCase):
     """
     Class to perform automated tests on the
-     Event List View.
+    Event List View.
     """
     def setUp(self):
         """
@@ -29,7 +29,7 @@ class TestEventListView(APITestCase):
                                             need_travel=True,
                                             money_required=10,
                                             owner=self.user)
-    
+
     def test_logged_out_event_list_view(self):
         """
         Tests whether a non-logged in user can access the Event List
@@ -113,7 +113,7 @@ class TestEventListView(APITestCase):
                 "need_travel": True}
         response = self.client.post(f'/events/', data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
 
 class EventDetailView(APITestCase):
     """
@@ -131,7 +131,7 @@ class EventDetailView(APITestCase):
                                             need_travel=True,
                                             money_required=10,
                                             owner=self.user)
-    
+
     def test_logged_out_event_detail_view(self):
         """
         Tests whether a non-logged in user can access the
@@ -168,7 +168,7 @@ class EventDetailView(APITestCase):
         response = self.client.put('/events/1',
                                    {'title': 'change'})
         self.assertTrue(response.status_code, status.HTTP_200_OK)
-    
+
     def test_whether_non_owner_cant_update_task(self):
         """
         Tests whether a non-owner can change an Event in the
@@ -200,7 +200,7 @@ class EventDetailView(APITestCase):
                 "need_travel": True}
         response = self.client.put(f'/events/1', data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-    
+
     def test_put_must_have_valid_title(self):
         """
         Tests whether an owner's put request must ahave a valid title

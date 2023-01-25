@@ -26,7 +26,7 @@ class EventList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_fields = ['need_travel']
     search_fields = ['title', 'need_travel', 'money_required']
-    
+
     def get_queryset(self):
         """
         Makes it so only the Events that the user owns are available.
@@ -41,7 +41,7 @@ class EventList(generics.ListCreateAPIView):
             return self.queryset.filter(Q(pk=None))
         else:
             return self.queryset.filter(owner=self.request.user)
-        
+
     def perform_create(self, serializer):
         """
         Function which saves a new Event Model to the
@@ -63,7 +63,8 @@ class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
     and delete requests to be made if the user is authenticated.
     """
     serializer_class = EventSerializer
-    permission_classes = [IsOwnerOrReadOnly, permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly,
+                          permissions.IsAuthenticatedOrReadOnly]
     queryset = Event.objects.all()
 
     def get_queryset(self):
@@ -80,4 +81,3 @@ class EventDetailView(generics.RetrieveUpdateDestroyAPIView):
             return self.queryset.filter(Q(pk=None))
         else:
             return self.queryset.filter(owner=self.request.user)
-

@@ -26,7 +26,7 @@ class TaskList(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter, DjangoFilterBackend]
     filterset_fields = ['state', 'priority']
     search_fields = ['title', 'state', 'priority']
-    
+
     def get_queryset(self):
         """
         Makes it so only the Tasks that the user owns are available.
@@ -41,7 +41,7 @@ class TaskList(generics.ListCreateAPIView):
             return self.queryset.filter(Q(pk=None))
         else:
             return self.queryset.filter(owner=self.request.user)
-        
+
     def perform_create(self, serializer):
         """
         Function which saves a new Task Model to the
@@ -63,7 +63,7 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
     and delete requests to be made if the user is authenticated.
     """
     serializer_class = TaskSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly, 
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly]
     queryset = Task.objects.all()
 
@@ -81,5 +81,3 @@ class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
             return self.queryset.filter(Q(pk=None))
         else:
             return self.queryset.filter(owner=self.request.user)
-
-
