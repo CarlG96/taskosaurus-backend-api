@@ -24,7 +24,13 @@ The Taskosaurus project was created using a GitHub Projects Kanban Board to simu
 
 [Taskosaurus Kanban Board](https://github.com/users/CarlG96/projects/6)
 
-## Model Diagram
+### Sprint Method
+
+The Taskosaurus project was developed in a series of sprints which were each seven days long, starting at Sprint 0. Each User Story on the Kanban Board except those not completed have been assigned a specific Milestone in order to show which sprint they were completed on. Not all sprints were of equal value because of outside factors but User Stories were split into 'Must Have', 'Should Have' and 'Could Have' labels which designated what I thought they should be categorised as at the start of a sprint as I added items to the 'In Progress' section of the board. 
+
+The 'SP:*' labels were used to designate how long I assumed each task would take based on a number of 'story points'. These were assigned at the start of each Sprint.
+
+## Models
 
 The Model below was designed in order to create a relationship diagram to be used as a reference when creating the models in the Django Rest API. All three custom models (Profile, Task and Event) were related to a standard Django Auth User class.
 
@@ -63,6 +69,21 @@ The Event Model contains the following fields:
 - money_required (int): Represents the amount of money required (est) for this Event. Defaults to 0 and cannot be negative.
 - owner (ForeignKey): Primary key of User that this Event is linked with.
 
+## Testing
+
+I targetted the Taskosaurus API with both manual and automated testing in order to make sure that things were working as expected.
+
+### Manual Testing
+
+The markdown file describing the manual tests can be found in the [MANUAL_TESTS.md](MANUAL_TESTS.md) file. It describes the steps I went through to manually ensure that the API worked correctly.
+
+### Automated Testing
+
+I also created a series of automated testing suites from which I set up some tests in order to find any hidden bugs that manual testing would have been unable to find and also to reinforce the manual tests. Here is an image showing the completeness of the tests:
+
+<img src="media/README-images/backend-automated-tests.png">
+
+Note: The naive datetime warning is likely due to the fact that the testing suite includes hardcoded dates. I have set these dates at least five months in advance of when this prohect will be handed in. In a real world scenario I would change this to ensure the longterm capability of the automated tests but felt it would be an unnecessary amount of time spend given the scope of this project.
 
 
 
