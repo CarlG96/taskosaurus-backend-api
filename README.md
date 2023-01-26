@@ -85,5 +85,69 @@ I also created a series of automated testing suites from which I set up some tes
 
 Note: The naive datetime warning is likely due to the fact that the testing suite includes hardcoded dates. I have set these dates at least five months in advance of when this prohect will be handed in. In a real world scenario I would change this to ensure the longterm capability of the automated tests but felt it would be an unnecessary amount of time spend given the scope of this project.
 
+## Technology
+
+### Languages
+
+- Python
+
+### Frameworks
+
+- Django
+- Django Rest Framework
+
+### Packages used
+
+- cloudinary - Used for serving images.
+- django-cloudinary-storage - Used for integration of Cloudinary.
+- django-allauth - Used for sign up and login for users.
+- dj-rest-auth - Used for API endpoints.
+- django-filter - Allow filtering.
+- django-cors-headers - Allows CORS headers to responses.
+- Pillow - image processing.
+- djangorestframework-simplejwt - JSON Web Token authentication.
+- psycopg2 - Connects Python and PostgreSQL databases.
+- gunicorn - Python WSGI HTTP Server.
+
+### Programs used for development
+
+- [drawSQL](https://drawsql.app/) - For the ERD (Entity Relationship Diagram).
+- Gitpod - Used for the development of the project as a cloud based IDE.
+- Git - Used for version control
+- GitHub - Used for the remote repo of the project but also used for the Kanban Board.
+
+## Deployment
+
+### Forking/ Cloning
+
+You can fork the repository with the following steps:
+
+1. Login to your GitHub account
+1. Locate the repository you wish to fork
+1. Click the 'Fork' button and you'll have a copy of the repo on your own account.
+
+You can clone the repo with the following steps:
+
+1. Under the 'Code' button in the repository, copy the HTTPS link.
+1. With Git on your local machine, find the directory you want to clone into and set up a Git Bash terminal there.
+1. Type git clone followed by the link to set up the clone on your own system.
+Note: Your own environment will be different from the original so you will need to set up environment variables and install the requirements for it to run.
+
+### Deployment to Heroku
+
+1. I logged in and created the app.
+1. After the app was created, linked an Elephant SQL database in the config vars for DATABASE_URL.
+1. Set the other config vars, including ALLOWED_HOSTS, CLIENT_ORIGIN (for the frontend), CLIENT_ORIGIN_DEV, CLOUDINARY_URL, SECRET_KEY and DISABLE_COLLECTSTATIC.
+1. Set the Deployment of the project by clicking on the 'Deploy' tab and choosing the method of deployment (I connected to my GitHub and had automatic deploys).
+1. The application deployed after an initial manual deploy.
+
+## Credits
+
+- Code Institute Django Rest Framework Tutorial for the setup for the project and basis on which I worked.
+- [Django Rest Framework Documentation](https://www.django-rest-framework.org/) for helping me come unstuck a few times.
+
+
+
+
 
 
