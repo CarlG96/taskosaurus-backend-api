@@ -25,3 +25,44 @@ The Taskosaurus project was created using a GitHub Projects Kanban Board to simu
 [Taskosaurus Kanban Board](https://github.com/users/CarlG96/projects/6)
 
 ## Model Diagram
+
+The Model below was designed in order to create a relationship diagram to be used as a reference when creating the models in the Django Rest API. All three custom models (Profile, Task and Event) were related to a standard Django Auth User class.
+
+<img src="media/README-images/models-diagram-taskosaurus.png">
+
+### Profile Model
+The Profile Model contains the following fields:
+
+- id (int): Auto-generated attribute which represents unique id (hidden).
+- owner (OneToOne): Represents a one-to-one relationship with a specific User instance.
+- date_created (DateTime): Date and time of creation of the Profile.
+- date_updated (DateTime): Date and time Profile was last updated.
+- image (file): Image that is displayed in the user's profile. Represents the user.
+
+### Task Model
+The Task Model contains the following fields:
+
+- id (int): Auto-generated attribute which represents unique id (hidden).
+- due_date (DateTime): Date and time when task must be completed by. Must be at least one day from the time of creation.
+- date_created (DateTime): Date and time of creation of the Task.
+- date_updated (DateTime): Date and time Task was last updated.
+- state (enum): Represents whether the Task is Current or has been completed and is therefore Archived.
+- title (str): Represents the title of the Task.
+- description (str): Represents the description of the Task.
+- priority (enum): Represents how urgent this task is specifically.
+- Can be 'Must Do', 'Might Do' and 'Can Do'.
+- owner (ForeignKey): Primary key of User that this Task is linked with.
+
+### Event Model
+The Event Model contains the following fields:
+
+- id (int): Auto-generated attribute which represents unique id (hidden).
+- date_created (DateTime): Date and time of creation of the Event.
+- date_updated (DateTime): Date and time when Event was last updated.
+- need_travel (bool): Represents whether the user must travel for this Event.
+- money_required (int): Represents the amount of money required (est) for this Event. Defaults to 0 and cannot be negative.
+- owner (ForeignKey): Primary key of User that this Event is linked with.
+
+
+
+
