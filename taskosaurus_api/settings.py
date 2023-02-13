@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 import re
+from os import environ
 
 if os.path.exists('env.py'):
     import env
