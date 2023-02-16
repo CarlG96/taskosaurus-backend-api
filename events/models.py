@@ -44,7 +44,7 @@ class Event(models.Model):
                               related_name='events')
 
     class Meta:
-        ordering = ['date_of_event']
+        ordering = ['-date_of_event']
 
     def __str__(self):
         return f'{self.title}'
