@@ -17,7 +17,7 @@ Taskosaurus has a separate backend API and frontend and this README deals with t
 As Taskosaurus is split between the frontend and the backend here are links to the frontend:
 
 [Frontend Repo](https://github.com/CarlG96/taskosaurus-frontend)
-<!--Frontend Deployment-->
+[Taskosaurus Frontend Deployment](https://taskosaurus.herokuapp.com/)
 
 ## User Stories and Kanban Board
 The Taskosaurus project was created using a GitHub Projects Kanban Board to simulate an agile workflow. The Kanban board for the project which includes both backend and frontend tasks can be found here:
