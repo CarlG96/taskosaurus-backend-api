@@ -30,6 +30,13 @@ The Taskosaurus project was developed in a series of sprints which were each sev
 
 The 'SP:*' labels were used to designate how long I assumed each task would take based on a number of 'story points'. These were assigned at the start of each Sprint.
 
+### User Stories
+
+Here are links to user stories involving the Taskosaurus API:
+
+[API Development](https://github.com/users/CarlG96/projects/6/views/1?filterQuery=api+development)
+[API Testing](https://github.com/users/CarlG96/projects/6/views/1?filterQuery=api+testing)
+
 ## Models
 
 The Model below was designed in order to create a relationship diagram to be used as a reference when creating the models in the Django Rest API. All three custom models (Profile, Task and Event) were related to a standard Django Auth User class.
