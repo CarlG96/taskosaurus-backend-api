@@ -121,7 +121,7 @@ MIDDLEWARE = [
 #     ]
 
 CORS_ALLOWED_ORIGINS = (
-    environ.get("CLIENT_ORIGIN"),
+    "https://taskosaurus.herokuapp.com",
     # environ.get("CLIENT_ORIGIN_DEV"),
 )
 
