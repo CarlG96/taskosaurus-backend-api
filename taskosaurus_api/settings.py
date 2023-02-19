@@ -125,6 +125,8 @@ CORS_ALLOWED_ORIGINS = (
     # environ.get("CLIENT_ORIGIN_DEV"),
 )
 
+SESSION_COOKIE_SAMESITE = 'None'
+
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'taskosaurus_api.urls'
