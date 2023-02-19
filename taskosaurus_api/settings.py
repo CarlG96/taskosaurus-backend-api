@@ -120,7 +120,7 @@ MIDDLEWARE = [
 #         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
 #     ]
 
-CORS_ORIGINS_WHITELIST = (
+CORS_ALLOWED_ORIGINS = (
     environ.get("CLIENT_ORIGIN"),
     environ.get("CLIENT_ORIGIN_DEV"),
 )
