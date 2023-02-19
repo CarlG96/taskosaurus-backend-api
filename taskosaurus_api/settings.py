@@ -45,7 +45,7 @@ if 'DEV' not in os.environ:
     ]
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(minutes=60*24),
     'ROTATE_REFRESH_TOKENS': True,
 }
@@ -121,7 +121,7 @@ MIDDLEWARE = [
 #     ]
 
 CORS_ALLOWED_ORIGINS = (
-    "https://taskosaurus.herokuapp.com",
+    environ.get("CLIENT_ORIGIN"),
     # environ.get("CLIENT_ORIGIN_DEV"),
 )
 
