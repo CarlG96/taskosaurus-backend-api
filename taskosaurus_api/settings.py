@@ -44,12 +44,6 @@ if 'DEV' not in os.environ:
         'rest_framework.renderers.JSONRenderer',
     ]
 
-# REST_USE_JWT = True
-# JWT_AUTH_SECURE = True
-# JWT_AUTH_COOKIE = 'my-app-auth'
-# JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-# JWT_AUTH_SAMESITE = 'None'
-
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
     'REFRESH_TOKEN_LIFETIME': timedelta(minutes=60*24),
@@ -126,10 +120,10 @@ MIDDLEWARE = [
 #         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
 #     ]
 
-CORS_ALLOWED_ORIGINS = [
-    environ.get("CLIENT_ORIGIN"),]
-#     environ.get("CLIENT_ORIGIN_DEV"),
-
+CORS_ORIGINS_WHITELIST = (
+    environ.get("CLIENT_ORIGIN"),
+    environ.get("CLIENT_ORIGIN_DEV"),
+)
 
 CORS_ALLOW_CREDENTIALS = True
 
