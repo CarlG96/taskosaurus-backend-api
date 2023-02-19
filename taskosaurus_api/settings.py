@@ -122,7 +122,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = (
     environ.get("CLIENT_ORIGIN"),
-    environ.get("CLIENT_ORIGIN_DEV"),
+    # environ.get("CLIENT_ORIGIN_DEV"),
 )
 
 CORS_ALLOW_CREDENTIALS = True
