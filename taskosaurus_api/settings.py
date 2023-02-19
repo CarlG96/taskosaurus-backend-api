@@ -128,7 +128,7 @@ if 'DEV' in os.environ:
         CORS_ALLOWED_ORIGIN_REGEXES = [
             rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
         ]
-    
+
 else:
     CORS_ALLOWED_ORIGINS = (
         environ.get("CLIENT_ORIGIN"),

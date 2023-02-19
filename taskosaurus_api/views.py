@@ -9,7 +9,7 @@ from .settings import (
 )
 
 
-@api_view((['POST']))
+@api_view(['POST'])
 def logout_route(request):
     """
     Route that fixes the logout bug
