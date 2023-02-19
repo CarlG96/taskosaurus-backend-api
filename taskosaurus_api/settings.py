@@ -112,18 +112,23 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# if 'CLIENT_ORIGIN_DEV' in os.environ:
-#     extracted_url = re.match(
-#         r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''),
-#         re.IGNORECASE).group(0)
-#     CORS_ALLOWED_ORIGIN_REGEXES = [
-#         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-#     ]
+if 'CLIENT_ORIGIN_DEV' in os.environ:
+    extracted_url = re.match(
+        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''),
+        re.IGNORECASE).group(0)
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    ]
 
 if 'DEV' in os.environ:
-    CORS_ALLOWED_ORIGINS = (
-        environ.get("CLIENT_ORIGIN_DEV"),
-    )
+    if 'CLIENT_ORIGIN_DEV' in os.environ:
+        extracted_url = re.match(
+            r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''),
+            re.IGNORECASE).group(0)
+        CORS_ALLOWED_ORIGIN_REGEXES = [
+            rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+        ]
+    
 else:
     CORS_ALLOWED_ORIGINS = (
         environ.get("CLIENT_ORIGIN"),
