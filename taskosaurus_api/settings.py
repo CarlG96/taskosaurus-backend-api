@@ -45,7 +45,7 @@ if 'DEV' not in os.environ:
     ]
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60*24),
     'REFRESH_TOKEN_LIFETIME': timedelta(minutes=60*24),
     'ROTATE_REFRESH_TOKENS': True,
 }
