@@ -124,7 +124,7 @@ Note: The naive datetime warning is likely due to the fact that the testing suit
 - Gitpod - Used for the development of the project as a cloud based IDE.
 - Git - Used for version control
 - GitHub - Used for the remote repo of the project but also used for the Kanban Board.
-- Elephant SQL
+- Elephant SQL for the database
 
 ## Deployment
 
