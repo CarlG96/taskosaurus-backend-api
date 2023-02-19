@@ -16,13 +16,13 @@ Taskosaurus has a separate backend API and frontend and this README deals with t
 ## Frontend Links
 As Taskosaurus is split between the frontend and the backend here are links to the frontend:
 
-[Frontend Repo](https://github.com/CarlG96/taskosaurus-frontend)
-[Taskosaurus Frontend Deployment](https://taskosaurus.herokuapp.com/)
+* [Frontend Repo](https://github.com/CarlG96/taskosaurus-frontend)
+* [Taskosaurus Frontend Deployment](https://taskosaurus.herokuapp.com/)
 
 ## User Stories and Kanban Board
 The Taskosaurus project was created using a GitHub Projects Kanban Board to simulate an agile workflow. The Kanban board for the project which includes both backend and frontend tasks can be found here:
 
-[Taskosaurus Kanban Board](https://github.com/users/CarlG96/projects/6)
+* [Taskosaurus Kanban Board](https://github.com/users/CarlG96/projects/6)
 
 ### Sprint Method
 
@@ -34,8 +34,9 @@ The 'SP:*' labels were used to designate how long I assumed each task would take
 
 Here are links to user stories involving the Taskosaurus API:
 
-[API Development](https://github.com/users/CarlG96/projects/6/views/1?filterQuery=api+development)
-[API Testing](https://github.com/users/CarlG96/projects/6/views/1?filterQuery=api+testing)
+* [API Development](https://github.com/users/CarlG96/projects/6/views/1?filterQuery=api+development)
+
+* [API Testing](https://github.com/users/CarlG96/projects/6/views/1?filterQuery=api+testing)
 
 ## Models
 
