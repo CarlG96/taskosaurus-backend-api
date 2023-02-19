@@ -113,12 +113,15 @@ MIDDLEWARE = [
 ]
 
 if 'DEV' in os.environ:
-    extracted_url = re.match(
-        r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''),
-        re.IGNORECASE).group(0)
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-        rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
-    ]
+    # extracted_url = re.match(
+    #     r'^.+-', os.environ.get('CLIENT_ORIGIN_DEV', ''),
+    #     re.IGNORECASE).group(0)
+    # CORS_ALLOWED_ORIGIN_REGEXES = [
+    #     rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
+    # ]
+    CORS_ALLOWED_ORIGINS = (
+        environ.get("CLIENT_ORIGIN_DEV"),
+    )
 else:
     CORS_ALLOWED_ORIGINS = (
         environ.get("CLIENT_ORIGIN"),
