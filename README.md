@@ -17,6 +17,7 @@ Taskosaurus has a separate backend API and frontend and this README deals with t
 As Taskosaurus is split between the frontend and the backend here are links to the frontend:
 
 * [Frontend Repo](https://github.com/CarlG96/taskosaurus-frontend)
+
 * [Taskosaurus Frontend Deployment](https://taskosaurus.herokuapp.com/)
 
 ## User Stories and Kanban Board
