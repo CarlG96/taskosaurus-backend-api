@@ -120,7 +120,7 @@ MIDDLEWARE = [
 #         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
 #     ]
 
-if 'DEV' in env:
+if 'DEV' in os.environ:
     CORS_ALLOWED_ORIGINS = (
         environ.get("CLIENT_ORIGIN_DEV"),
     )
