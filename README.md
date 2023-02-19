@@ -156,6 +156,19 @@ Note: Your own environment will be different from the original so you will need 
 - Code Institute Django Rest Framework Tutorial for the setup for the project and basis on which I worked.
 - [Django Rest Framework Documentation](https://www.django-rest-framework.org/) for helping me come unstuck a few times.
 
+## Bugs
+
+### Authentication Bug
+The cookies were not being set properly although so although an authentication token is issued after signing in, it does not appear in the browser's cookies. This meant that it required a hard refresh of the page after five minutes to refresh the token. I have checked my code against the walkthrough project and have spent three hours with tutors and have been unsuccessful in resolving the issue. I have created a workaround, however, that involves setting these values in the backend:
+
+```Python
+'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60*24),
+'REFRESH_TOKEN_LIFETIME': timedelta(minutes=60*24),
+'ROTATE_REFRESH_TOKENS': True,
+```
+
+which makes authentication similar to a 24-hour session instead of refreshing the token. 
+
 
 
 
