@@ -120,10 +120,14 @@ MIDDLEWARE = [
 #         rf"{extracted_url}(eu|us)\d+\w\.gitpod\.io$",
 #     ]
 
-CORS_ALLOWED_ORIGINS = (
-    environ.get("CLIENT_ORIGIN"),
-    # environ.get("CLIENT_ORIGIN_DEV"),
-)
+if 'DEV' in env:
+    CORS_ALLOWED_ORIGINS = (
+        environ.get("CLIENT_ORIGIN_DEV"),
+    )
+else:
+    CORS_ALLOWED_ORIGINS = (
+        environ.get("CLIENT_ORIGIN"),
+    )
 
 SESSION_COOKIE_SAMESITE = 'None'
 
